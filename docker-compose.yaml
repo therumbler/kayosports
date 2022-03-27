@@ -1,0 +1,26 @@
+---
+version: "3.9"
+services:
+  nginx-kayosports:
+    image: nginx:1.21.6-alpine
+    environment:
+      - HOSTNAME=${HOSTNAME}
+    volumes:
+      - ./public:/usr/share/nginx/html:ro
+      - ./config/nginx.default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./config/.htpasswd:/etc/apache2/.htpasswd:ro
+    ports:
+      - 80
+    networks:
+      - au01
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kayosports.rule=Host(`${HOSTNAME}`) && PathPrefix(`/kayosports/`)"
+      - "traefik.http.middlewares.stripprefix-kayosports.stripprefix.prefixes=/kayosports/"
+      - "traefik.http.routers.kayosports.tls=true"
+      - "traefik.http.routers.kayosports.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.kayosports.middlewares=stripprefix-kayosports"
+
+networks:
+  au01:
+    external: true
