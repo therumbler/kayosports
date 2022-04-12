@@ -12,7 +12,7 @@ useHead({
     {
       hid: "videojs",
       src: "//vjs.zencdn.net/7.18.1/video.min.js",
-      defer: false,
+      defer: true,
     },
   ],
   link: [

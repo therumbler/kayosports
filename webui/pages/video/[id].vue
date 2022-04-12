@@ -6,15 +6,17 @@
       controls
       id="kayo-video"
       class="video-js"
+      preload="none"
       data-setup='{"fluid": true}'
     >
       <source
         v-for="stream in asset?.data.data[0]?.alternativeStreams"
         :key="stream.id"
         :src="stream.manifest.uri"
+        type="application/x-mpegURL"
       />
     </video>
-    <div>{{ asset }}></div>
+    <div>{{ asset }}</div>
   </div>
 </template>
 <script setup>
@@ -27,7 +29,7 @@ const url = `/api/video/${route.params.id}`;
 console.log("url", url);
 asset.value = await useFetch(url);
 
-console.log("asset", asset.value);
+// console.log("asset", asset.value);
 // const validStreams = resp.data.alternativeStreams.filter(
 //   (stream) => stream.manifest.uri.indexOf("foxtel") > -1
 // );
