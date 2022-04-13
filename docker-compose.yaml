@@ -13,14 +13,30 @@ services:
       - 80
     networks:
       - au01
+      - kayosports
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.kayosports.rule=Host(`${HOSTNAME}`) && PathPrefix(`/kayosports/`)"
-      - "traefik.http.middlewares.stripprefix-kayosports.stripprefix.prefixes=/kayosports/"
+      #- "traefik.http.routers.kayosports.rule=Host(`${HOSTNAME}`) && PathPrefix(`/kayosports/`)"
+      - "traefik.http.routers.kayosports.rule=Host(`${HOSTNAME}`)"
+      #- "traefik.http.middlewares.stripprefix-kayosports.stripprefix.prefixes=/kayosports/"
       - "traefik.http.routers.kayosports.tls=true"
       - "traefik.http.routers.kayosports.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.kayosports.middlewares=stripprefix-kayosports"
+      #- "traefik.http.routers.kayosports.middlewares=stripprefix-kayosports"
+
+  kayosports:
+    build: ./webui/
+    ports:
+      - 3000
+    networks:
+      - kayosports
+    env_file:
+      - .env
+    #environment:
+    #  - NUXT_APP_BASE_URL=/kayosports/
+   
 
 networks:
   au01:
     external: true
+  kayosports:
+    name: kayosports
