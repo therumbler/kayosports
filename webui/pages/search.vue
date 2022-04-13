@@ -11,7 +11,7 @@
       <div v-for="result in results" :key="result.data.asset?.id">
         <a :href="'/video/' + result.data.asset?.id">
           <div>{{ result.data.asset?.title }}</div>
-          <img class="image" :src="result.data.asset?.images.defaultUrl" />
+          <img class="image" :src="result.data.asset?.images?.defaultUrl" />
         </a>
       </div>
     </div>
