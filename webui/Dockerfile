@@ -14,7 +14,6 @@ RUN npm install -g npm@8.6.0
 COPY package*.json /usr/src/nuxt-app/
 RUN npm install
 COPY . /usr/src/nuxt-app/
-RUN ls -la
 RUN npm run build
 
 
