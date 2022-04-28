@@ -25,23 +25,27 @@ function filterStreams(asset) {
 
 KayoSports.prototype.fetchNewToken = async function () {
   const url = "https://auth.streamotion.com.au/oauth/token";
-  console.log('fetching new token')
+  
   const data = {
     redirect_uri: "https://kayosports.com.au/redirect",
     client_id: this.client_id,
-    grant_type: " refresh_token",
+    grant_type: "refresh_token",
     refresh_token: this.refresh_token,
   };
+  console.log('fetching new token. data:', data);
   let headers = {
     "Content-Type": "application/json",
     "referer": "https://kayosports.com.au/",
-    "origin": "https://kayosports.com.au"
+    "origin": "https://kayosports.com.au",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
   }
+  console.log('headers:', headers);
   const resp = await fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
     headers: headers
   });
+  console.log('got resp status:', resp.status)
   const respObj = await resp.json();
   console.log("fetchNewToken respObj", JSON.stringify(respObj));
   if (respObj.hasOwnProperty("access_token")) {
