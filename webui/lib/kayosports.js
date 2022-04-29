@@ -16,7 +16,7 @@ function filterStreams(asset) {
     (s, index) =>
       (validStreams[index].manifest.uri = s.manifest.uri.replace(
         "https://foxtel-814bffb9b389f652.secure.footprint.net/",
-        "https://au01.irumble.com/"
+        "/"
       ))
   );
   asset.data[0].alternativeStreams = validStreams;

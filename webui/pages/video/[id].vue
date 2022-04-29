@@ -36,7 +36,7 @@ function getStreamUrl(videoObj) {
       if (stream.manifest.uri.indexOf("foxtel") > -1) {
         streamUrl = stream.manifest.uri.replace(
           "https://foxtel-761f422bb93edb7b.secure.footprint.net/",
-          "https://au01.irumble.com/"
+          "/"
         );
       }
       if (
@@ -44,7 +44,7 @@ function getStreamUrl(videoObj) {
       ) {
         streamUrl = stream.manifest.uri.replace(
           "https://6b5b12aff40545729767280b02317b5f.mediatailor.ap-southeast-2.amazonaws.com/",
-          "https://au01.irumble.com/"
+          "/"
         );
       }
     }
@@ -55,7 +55,7 @@ function getStreamUrl(videoObj) {
   if (manifestUri.indexOf("6b5b12aff40545729767280b02317b5f") > -1) {
     streamUrl = manifestUri.replace(
       "https://6b5b12aff40545729767280b02317b5f.mediatailor.ap-southeast-2.amazonaws.com/",
-      "https://au01.irumble.com/"
+      "/"
     );
   }
 
@@ -81,7 +81,7 @@ function getStreams(videoObj) {
         let newStream = stream;
         newStream.manifest.uri = stream.manifest.uri.replace(
           replacement,
-          "https://au01.irumble.com/"
+          "/"
         );
         newStream.id = `0-replaced-${newStream.id}`;
         console.log('pushing into ', streams);
