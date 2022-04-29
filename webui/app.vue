@@ -4,6 +4,11 @@
 <NuxtPage />
 </div>
 </template>
+<style>
+.image {
+  max-width: 100%;
+}
+</style>
 <script setup>
 // window.HELP_IMPROVE_VIDEOJS = false;
 useHead({

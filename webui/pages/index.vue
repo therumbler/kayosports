@@ -1,3 +1,6 @@
 <template>
-  <h1>Index</h1>
+<div>
+  <h2>Index</h2>
+  <Home />
+  </div>
 </template>
