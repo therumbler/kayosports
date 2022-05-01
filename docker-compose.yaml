@@ -2,6 +2,8 @@
 version: "3.9"
 services:
   nginx-kayosports:
+    depends_on:
+      - kayosports
     image: nginx:1.21.6-alpine
     environment:
       - HOSTNAME=${HOSTNAME}
