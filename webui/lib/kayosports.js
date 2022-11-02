@@ -4,7 +4,7 @@ export default function KayoSports() {
   this.client_id = process.env.KAYOSPORTS_CLIENT_ID;
 }
 function filterStreams(asset) {
-  if (!reassetsp.data) {
+  if (!asset.data) {
     return asset;
   }
   console.log("filtering streams...");
@@ -46,6 +46,9 @@ KayoSports.prototype.fetchNewToken = async function () {
     headers: headers
   });
   console.log('got resp status:', resp.status)
+  if(resp.status>399){
+    console.error("fetchNewToken fail", await resp.text())
+  }
   const respObj = await resp.json();
   console.log("fetchNewToken respObj", JSON.stringify(respObj));
   if (respObj.hasOwnProperty("access_token")) {
@@ -98,8 +101,8 @@ KayoSports.prototype.fetchAsset = async function (assetId) {
   };
   let asset = await this.call(path, data);
   
-  // asset = filterStreams(asset);
+  //asset = filterStreams(asset);
 
-  console.log("asset", JSON.stringify(asset));
+  // console.log("asset", JSON.stringify(asset));
   return asset;
 };
